@@ -17,9 +17,12 @@ def main() -> None:
     text = FORTUNE.strip()
     if not 1 <= len(text) <= 120:
         raise ValueError(f"fortune must be 1-120 characters, got {len(text)}")
+    if "\n" in text:
+        raise ValueError("fortune must be a single line")
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(text)
+    print(text)
 
 
 if __name__ == "__main__":
